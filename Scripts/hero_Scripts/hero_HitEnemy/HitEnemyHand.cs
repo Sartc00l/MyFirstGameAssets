@@ -7,7 +7,8 @@ public class HitEnemyHand : MonoBehaviour
     public float attackRange = 0.6f;
     public Transform attackPoint;
     public LayerMask enemyLayer;
-    public int giveDamage=1;
+    [SerializeField]
+    int giveDamage=1;
     void Start()
     {
         anim = GetComponent<Animator>();
