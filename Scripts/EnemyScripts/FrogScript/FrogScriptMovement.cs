@@ -14,8 +14,6 @@ public class FrogScript : MonoBehaviour
     bool isItRight = true;
     bool isEnemySawPlayer = false;
 
-    [SerializeField]
-    int jump = 4;
     static int flipTime=5;
 
     void Start()

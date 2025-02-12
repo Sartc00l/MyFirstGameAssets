@@ -27,7 +27,6 @@ public class Health_hero : MonoBehaviour
                 SceneManager.LoadScene(0);
             }
         }
-
     }
 
     private IEnumerator StartCoroutine()
