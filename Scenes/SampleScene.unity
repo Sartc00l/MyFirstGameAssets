@@ -263,14 +263,14 @@ RectTransform:
   m_GameObject: {fileID: 280168791}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 593639349}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -762.86, y: 255.5}
+  m_AnchoredPosition: {x: -576, y: 243.5}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &519420028
@@ -411,38 +411,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RenderShadows: 1
-  m_RequiresDepthTextureOption: 2
-  m_RequiresOpaqueTextureOption: 2
-  m_CameraType: 0
-  m_Cameras: []
-  m_RendererIndex: -1
-  m_VolumeLayerMask:
-    serializedVersion: 2
-    m_Bits: 1
-  m_VolumeTrigger: {fileID: 0}
-  m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
-  m_AntialiasingQuality: 2
-  m_StopNaN: 0
-  m_Dithering: 0
-  m_ClearDepth: 1
-  m_AllowXRRendering: 1
-  m_AllowHDROutput: 1
-  m_UseScreenCoordOverride: 0
-  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
-  m_RequiresDepthTexture: 0
-  m_RequiresColorTexture: 0
-  m_Version: 2
-  m_TaaSettings:
-    m_Quality: 3
-    m_FrameInfluence: 0.1
-    m_JitterScale: 1
-    m_MipBias: 0
-    m_VarianceClampScale: 0.9
-    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &534475597
 GameObject:
   m_ObjectHideFlags: 0
@@ -856,7 +824,7 @@ RectTransform:
   m_GameObject: {fileID: 911263772}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.67, y: 0.67, z: 0.67}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1324233448}
@@ -864,7 +832,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 806.6, y: 275.17}
+  m_AnchoredPosition: {x: 571.05, y: 237.4}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &911263774
@@ -905,7 +873,7 @@ MonoBehaviour:
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
-    m_ColorMultiplier: 1
+    m_ColorMultiplier: 5
     m_FadeDuration: 0.1
   m_SpriteState:
     m_HighlightedSprite: {fileID: 0}
@@ -988,7 +956,7 @@ GameObject:
   - component: {fileID: 1197274035}
   - component: {fileID: 1197274032}
   - component: {fileID: 1197274036}
-  m_Layer: 6
+  m_Layer: 3
   m_Name: Enemy
   m_TagString: Enemyy
   m_Icon: {fileID: 0}
@@ -1081,6 +1049,8 @@ MonoBehaviour:
   enemyLine: {fileID: 1197274031}
   boundaryRight: {fileID: 45651772}
   enemyDied: {fileID: 1197274033}
+  rigidEnemy2d: {fileID: 0}
+  jump: 10
 --- !u!70 &1197274033
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1176,13 +1146,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1197274029}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 937c5de234d49564d95477b90cb4a4b9, type: 3}
+  m_Script: {fileID: 11500000, guid: 2987ff114e3787642b7a6f7b1612ed8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isFrogdead: 0
   heathEnemy: 4
   anim: {fileID: 1197274035}
-  enemyDied: {fileID: 1197274031}
+  enemyDied: {fileID: 0}
 --- !u!1 &1324233447
 GameObject:
   m_ObjectHideFlags: 0
@@ -1319,15 +1289,15 @@ MonoBehaviour:
   Composition:
     ScreenPosition: {x: 0, y: 0}
     DeadZone:
-      Enabled: 1
-      Size: {x: 0, y: 0}
+      Enabled: 0
+      Size: {x: 0.2, y: 0.2}
     HardLimits:
-      Enabled: 1
+      Enabled: 0
       Size: {x: 0.8, y: 0.8}
       Offset: {x: 0, y: 0}
   CenterOnActivate: 1
   TargetOffset: {x: 0, y: 0, z: 0}
-  Damping: {x: 1, y: 1, z: 1}
+  Damping: {x: 0, y: 0, z: 0}
   Lookahead:
     Enabled: 0
     Time: 0
@@ -2930,11 +2900,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackRange: 0.57
+  giveDamage: 1
   attackPoint: {fileID: 1997191626}
   enemyLayer:
     serializedVersion: 2
-    m_Bits: 64
-  giveDamage: 1
+    m_Bits: 8
 --- !u!4 &1982263731 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8021596004920597221, guid: cdf778f2c88c25b43a4b7665c9b9f70b, type: 3}

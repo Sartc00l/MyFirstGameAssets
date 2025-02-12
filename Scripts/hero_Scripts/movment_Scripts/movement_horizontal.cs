@@ -26,7 +26,7 @@ public class movement_horizontal : MonoBehaviour
         rb2d = gameObject.GetComponent<Rigidbody2D>();
         animation = gameObject.GetComponent<Animator>();
     }
-    private void AmSpeedNull()
+    private void IsSpeedZero()
     {
         if (rb2d.linearVelocity.x == 0)
         {
@@ -83,7 +83,7 @@ public class movement_horizontal : MonoBehaviour
             gameObject.transform.Rotate(0, 180, 0);
             isRight = false;
         }
-        AmSpeedNull();
+        IsSpeedZero();
     }
 
 }

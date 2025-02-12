@@ -1,14 +1,17 @@
+using System.Collections;
 using UnityEditor;
 using UnityEngine;
 
 public class HitEnemyHand : MonoBehaviour
 {
-    Animator anim;
-    public float attackRange = 0.6f;
-    public Transform attackPoint;
-    public LayerMask enemyLayer;
+    [SerializeField] 
+    float attackRange = 0.6f;
     [SerializeField]
     int giveDamage=1;
+
+    public Transform attackPoint;
+    public LayerMask enemyLayer;
+    Animator anim;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -19,8 +22,7 @@ public class HitEnemyHand : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.C)) 
         {
-            Attack();
-            
+            Attack();            
         }
     }
     void Attack()
@@ -38,4 +40,6 @@ public class HitEnemyHand : MonoBehaviour
     {
         Gizmos.DrawWireSphere(attackPoint.position,attackRange);
     }
+    
+    
 }
