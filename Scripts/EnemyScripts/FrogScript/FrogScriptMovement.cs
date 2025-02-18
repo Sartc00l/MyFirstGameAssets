@@ -97,7 +97,7 @@ public class FrogScript : MonoBehaviour
         }
         else if(angle<90)
         {
-            Debug.Log($"Игрок справаградус = {angle}");
+            Debug.Log($"Игрок справа градус = {angle}");
         }
         StartCoroutine( PositionPlayerDebug());
     }

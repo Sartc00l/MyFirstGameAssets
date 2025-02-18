@@ -1048,7 +1048,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyLine: {fileID: 1197274031}
-  boundaryRight: {fileID: 1571768670}
+  playerTransform: {fileID: 1571768670}
   enemyDied: {fileID: 1197274033}
   rigidEnemy2d: {fileID: 1197274034}
   anim: {fileID: 1197274035}
