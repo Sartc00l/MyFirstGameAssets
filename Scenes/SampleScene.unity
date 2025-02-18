@@ -956,6 +956,7 @@ GameObject:
   - component: {fileID: 1197274035}
   - component: {fileID: 1197274032}
   - component: {fileID: 1197274036}
+  - component: {fileID: 1197274037}
   m_Layer: 3
   m_Name: Enemy
   m_TagString: Enemyy
@@ -1027,7 +1028,7 @@ Transform:
   m_GameObject: {fileID: 1197274029}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.39, y: -5.3, z: 0}
+  m_LocalPosition: {x: -6.34, y: 1.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1047,9 +1048,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyLine: {fileID: 1197274031}
-  boundaryRight: {fileID: 45651772}
+  boundaryRight: {fileID: 1571768670}
   enemyDied: {fileID: 1197274033}
-  rigidEnemy2d: {fileID: 0}
+  rigidEnemy2d: {fileID: 1197274034}
+  anim: {fileID: 1197274035}
 --- !u!70 &1197274033
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1152,6 +1154,22 @@ MonoBehaviour:
   heathEnemy: 4
   anim: {fileID: 1197274035}
   enemyDied: {fileID: 0}
+--- !u!114 &1197274037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197274029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f5e60a1125a2bb43b67ce992b3d2bf7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterTransform: {fileID: 1571768670}
+  direction: {x: 0, y: 0}
+  angle: 0
+  distance: 0
 --- !u!1 &1324233447
 GameObject:
   m_ObjectHideFlags: 0

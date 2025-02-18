@@ -4,28 +4,35 @@ using UnityEngine;
 
 public class FrogScript : MonoBehaviour
 {
-    public Transform enemyLine;
-    public Transform boundaryRight;
-    public Collider2D enemyDied;
-    public Rigidbody2D rigidEnemy2d;
+    [SerializeField] Transform enemyLine;
+    [SerializeField] Transform playerTransform;
+    [SerializeField] Collider2D enemyDied;
+    [SerializeField] Rigidbody2D rigidEnemy2d;
+    [SerializeField] Animator anim;
 
-    Animator anim;
+    Vector2 direction;
+
 
     bool isItRight = true;
     bool isEnemySawPlayer = false;
 
-    static int flipTime=5;
+    float angle;
+    float distance;
+
+    static int flipTime = 5;
 
     void Start()
     {
         rigidEnemy2d = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+        anim =GetComponent<Animator>();
         StartCoroutine(WaitThenFlip(flipTime));
+        StartCoroutine(PositionPlayerDebug());
     }
 
     private void Update()
     {
         Death();
+        FindPlayer();
     }
 
     private void Flip()
@@ -45,47 +52,56 @@ public class FrogScript : MonoBehaviour
         StartCoroutine(WaitThenFlip(_flipTime));
     }
 
-    private void OnDrawGizmos()
-    {
 
-        if (boundaryRight != null)
+    private void OnTriggerEnter2D(Collider2D collision)//Movement enemy main logic
+    {
+        if (collision.CompareTag("Player") & collision.IsTouchingLayers())
         {
-            Gizmos.color = Color.red; // Цвет границ
-            Gizmos.DrawLine(enemyLine.position, boundaryRight.position);
-            Gizmos.DrawSphere(boundaryRight.position, 0.1f); // Правый предел
+            
+                if (isItRight == true)
+                {
+                    rigidEnemy2d.linearVelocity = new Vector3(10,rigidEnemy2d.linearVelocity.y, 0);
+                    isEnemySawPlayer = true;
+                    anim.SetTrigger("didIseePlayer");
+                    anim.SetFloat("MovementFrog",rigidEnemy2d.linearVelocity.x);
+                }
+                else if (isItRight == false)
+                {
+                    rigidEnemy2d.linearVelocity = new Vector3(-10, rigidEnemy2d.linearVelocity.y, 0);
+                    isEnemySawPlayer = true;
+                    anim.SetTrigger("didIseePlayer");
+                    anim.SetFloat("MovementFrog", rigidEnemy2d.linearVelocity.x);
+
+                }
+                Debug.Log("Увидел игрока");
+            
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void FindPlayer()//Less 90 = player left, more 90 = player right
+    { 
+        direction = (Vector2)playerTransform.position - (Vector2)transform.position;
+        angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        distance = direction.magnitude;
+        angle = Mathf.Abs(angle);
+    }
+
+    IEnumerator PositionPlayerDebug()
     {
-        if (collision.CompareTag("Player") & collision.IsTouchingLayers())//Movement enemy main logic
+        yield return new WaitForSeconds(2);
+        FindPlayer();
+        Debug.ClearDeveloperConsole();
+        if (angle>90)
         {
-            if (isItRight == true)
-            {
-                rigidEnemy2d.linearVelocity = new Vector3(10, rigidEnemy2d.linearVelocity.y, 0);
-                isEnemySawPlayer = true;
-                anim.SetTrigger("didIseePlayer");
-                anim.SetFloat("MovementFrog", rigidEnemy2d.linearVelocity.x);
-            }
-            else if (isItRight == false)
-            {
-                rigidEnemy2d.linearVelocity = new Vector3(-10, rigidEnemy2d.linearVelocity.y, 0);
-                isEnemySawPlayer = true;
-                anim.SetTrigger("didIseePlayer");
-                anim.SetFloat("MovementFrog", rigidEnemy2d.linearVelocity.x);
-                
-            }
-            Debug.Log("Увидел игрока");
+            Debug.Log($"Игрок слева градус = {angle}");
         }
+        else if(angle<90)
+        {
+            Debug.Log($"Игрок справаградус = {angle}");
+        }
+        StartCoroutine( PositionPlayerDebug());
     }
-
-
-    IEnumerator WhatIsThat()
-    {
-        yield return new WaitForSeconds(5);
-        anim.enabled = false;
-    }
-    void Death()
+    private void Death()
     {
         //rigidEnemy2d.velocity = new Vector3(1*1,rigidEnemy2d.velocity.y,0);
         if (GetComponent<FrogTakeDmg>().isFrogdead == true)
@@ -99,7 +115,7 @@ public class FrogScript : MonoBehaviour
         IEnumerator SecondFallDown()
         {
             rigidEnemy2d.AddForce(new Vector2(0, 10), ForceMode2D.Impulse);
-            yield return new WaitForSeconds (1);
+            yield return new WaitForSeconds(1);
             rigidEnemy2d.AddForce(new Vector2(0, -10 * 4), ForceMode2D.Impulse);
         }
         IEnumerator DeathTime()
@@ -108,4 +124,15 @@ public class FrogScript : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    private void OnDrawGizmos()
+    {
+        if (playerTransform != null)
+        {
+            Gizmos.color = Color.yellow; // Цвет границ
+            Gizmos.DrawLine(enemyLine.position, playerTransform.position);
+            Gizmos.DrawSphere(playerTransform.position, 0.1f); // Правый предел
+        }
+    }
+
 }
