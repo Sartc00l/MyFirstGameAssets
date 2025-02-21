@@ -34,7 +34,6 @@ public class FrogTakeDmg : MonoBehaviour
 
     public void Die()
     {
-        anim.SetBool("Dead?", true);
         isFrogdead = true;
         StartCoroutine();
     }
