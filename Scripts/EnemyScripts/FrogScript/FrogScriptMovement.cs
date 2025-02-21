@@ -10,6 +10,8 @@ public class FrogScript : MonoBehaviour
     [SerializeField] Rigidbody2D rigidEnemy2d;
     [SerializeField] Animator anim;
 
+    public GameObject frogDead;
+
     Vector2 direction;
 
 
@@ -31,7 +33,10 @@ public class FrogScript : MonoBehaviour
 
     private void Update()
     {
-        Death();
+        if (GetComponent<FrogTakeDmg>().isFrogdead == true)
+        {
+            Death();
+        }
         FindPlayer();
     }
 
@@ -101,6 +106,13 @@ public class FrogScript : MonoBehaviour
         }
         StartCoroutine( PositionPlayerDebug());
     }
+
+    private void Death()
+    {
+        Instantiate(frogDead,this.transform.position,Quaternion.identity);
+        Destroy(this.gameObject);
+    }
+    /*
     private void Death()
     {
         //rigidEnemy2d.velocity = new Vector3(1*1,rigidEnemy2d.velocity.y,0);
@@ -124,6 +136,7 @@ public class FrogScript : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    */
 
     private void OnDrawGizmos()
     {
