@@ -17,17 +17,17 @@ public class HitEnemyHand : MonoBehaviour
     {
         anim = GetComponent<Animator>();
     }
-
+        
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.C)) 
         {
-            Attack();            
+           anim.SetTrigger("Attack");         
         }
     }
-    void Attack()
+    public void Attack()
     {
-        anim.SetTrigger("Attack");
+        
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position,attackRange,enemyLayer);
         foreach (Collider2D enemy in hitEnemies)
         {

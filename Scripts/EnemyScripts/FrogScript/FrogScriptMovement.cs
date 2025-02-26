@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class FrogScript : MonoBehaviour
 {
+    public GameObject frogDead;
+
     [SerializeField] Transform enemyLine;
     [SerializeField] Transform playerTransform;
     [SerializeField] Collider2D enemyDied;
     [SerializeField] Rigidbody2D rigidEnemy2d;
     [SerializeField] Animator anim;
 
-    public GameObject frogDead;
-
     Vector2 direction;
-
 
     bool isItRight = true;
     bool isEnemySawPlayer = false;
@@ -93,7 +92,7 @@ public class FrogScript : MonoBehaviour
 
     IEnumerator PositionPlayerDebug()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(5);
         FindPlayer();
         Debug.ClearDeveloperConsole();
         if (angle>90)
