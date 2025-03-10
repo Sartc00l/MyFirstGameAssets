@@ -4,23 +4,15 @@ using UnityEngine;
 
 public class FrogScript : MonoBehaviour
 {
-<<<<<<< Updated upstream
+
     [SerializeField] Transform enemyLine;
     [SerializeField] Transform playerTransform;
     [SerializeField] Collider2D enemyDied;
     [SerializeField] Rigidbody2D rigidEnemy2d;
     [SerializeField] Animator anim;
-=======
-    public GameObject frogDead;
-
-    [SerializeField] private Transform enemyLine;
-    [SerializeField] private Transform playerTransform;
-    [SerializeField] private Collider2D enemyDied;
-    [SerializeField] private Rigidbody2D rigidEnemy2d;
-    [SerializeField] private Animator anim;
->>>>>>> Stashed changes
 
     public GameObject frogDead;
+
 
     Vector2 direction;
 
