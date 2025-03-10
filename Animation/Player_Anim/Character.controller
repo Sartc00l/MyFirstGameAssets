@@ -160,7 +160,7 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 3
     m_ConditionEvent: Movement
-    m_EventTreshold: 3
+    m_EventTreshold: 0.03
   - m_ConditionMode: 1
     m_ConditionEvent: IsStable
     m_EventTreshold: 0
@@ -356,7 +356,7 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 4
     m_ConditionEvent: ySpeed
-    m_EventTreshold: 0
+    m_EventTreshold: 0.003
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7343685831927645809}
   m_Solo: 0

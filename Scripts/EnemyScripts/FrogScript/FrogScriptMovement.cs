@@ -4,11 +4,21 @@ using UnityEngine;
 
 public class FrogScript : MonoBehaviour
 {
+<<<<<<< Updated upstream
     [SerializeField] Transform enemyLine;
     [SerializeField] Transform playerTransform;
     [SerializeField] Collider2D enemyDied;
     [SerializeField] Rigidbody2D rigidEnemy2d;
     [SerializeField] Animator anim;
+=======
+    public GameObject frogDead;
+
+    [SerializeField] private Transform enemyLine;
+    [SerializeField] private Transform playerTransform;
+    [SerializeField] private Collider2D enemyDied;
+    [SerializeField] private Rigidbody2D rigidEnemy2d;
+    [SerializeField] private Animator anim;
+>>>>>>> Stashed changes
 
     public GameObject frogDead;
 
@@ -33,9 +43,9 @@ public class FrogScript : MonoBehaviour
 
     private void Update()
     {
-        if (GetComponent<FrogTakeDmg>().isFrogdead == true)
+        //if (GetComponent<FrogTakeDmg>().isFrogdead == true)
         {
-            Death();
+            //Death();
         }
         FindPlayer();
     }
@@ -57,7 +67,7 @@ public class FrogScript : MonoBehaviour
         StartCoroutine(WaitThenFlip(_flipTime));
     }
 
-
+    /*
     private void OnTriggerEnter2D(Collider2D collision)//Movement enemy main logic
     {
         if (collision.CompareTag("Player") & collision.IsTouchingLayers())
@@ -82,7 +92,7 @@ public class FrogScript : MonoBehaviour
             
         }
     }
-
+    */
     private void FindPlayer()//Less 90 = player left, more 90 = player right
     { 
         direction = (Vector2)playerTransform.position - (Vector2)transform.position;

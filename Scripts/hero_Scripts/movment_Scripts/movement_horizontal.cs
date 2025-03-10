@@ -4,21 +4,20 @@ using UnityEngine;
 using System.Linq;
 using System;
 
-public class movement_horizontal : MonoBehaviour
+public class Movement_horizontal : MonoBehaviour
 {
     Rigidbody2D rb2d;
     Animator animation;
     bool isRight = true;
-    [SerializeField]
-    bool amIstaying = false;
-    float mov;
+    bool isDashing = false;
 
-    int[] speedArray = Enumerable.Range(1, 14).ToArray();
 
-    float move;
+    [SerializeField] private float speedMove=13f;
+    [SerializeField] private bool amIstaying = false;
+    [SerializeField] private float speedDash;
+    [SerializeField] private float dashCooldown = 1f; // Время перезарядки рывка
 
-    [SerializeField]
-    private float speed;
+
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +25,35 @@ public class movement_horizontal : MonoBehaviour
         rb2d = gameObject.GetComponent<Rigidbody2D>();
         animation = gameObject.GetComponent<Animator>();
     }
-    private void IsSpeedZero()
+   
+    // Update is called once per frame
+    void Update()
+    {
+        HandleMovement();
+        UpdtAnimation();
+        HandleDash();
+    }
+    void HandleMovement()
+    {
+        float moveInput = Input.GetAxis("Horizontal");
+        rb2d.linearVelocity = new Vector2(moveInput * speedMove, rb2d.linearVelocity.y);
+
+        // Поворот персонажа
+        if (moveInput > 0 && !isRight)
+        {
+            Flip();
+        }
+        else if (moveInput < 0 && isRight)
+        {
+            Flip();
+        }
+    }
+    void Flip()
+    {
+        isRight = !isRight;
+        transform.Rotate(0,180,0);
+    }
+    void IsSpeedZero()
     {
         if (rb2d.linearVelocity.x == 0)
         {
@@ -39,51 +66,19 @@ public class movement_horizontal : MonoBehaviour
             animation.SetBool("amIstaying?", amIstaying);
         }
     }
-    // Update is called once per frame
-    void Update()
+    void UpdtAnimation()
     {
-
-
-        mov = Input.GetAxis("Horizontal");
-        if (mov > 0)
-        {
-            for (int time = 0; time <= 12; time++)
-            {
-                mov = Input.GetAxis("Horizontal");
-
-                move = speedArray[time] * mov;
-
-                speed = move;
-
-                rb2d.linearVelocity = new Vector3(mov * speed, rb2d.linearVelocity.y, 0);
-            }
-        }
-        if (mov < 0)
-        {
-            for (int time = 0; time <= 12; time++)
-            {
-                mov = Input.GetAxis("Horizontal");
-
-                move = speedArray[time] * mov;
-
-                speed = move;
-
-                rb2d.linearVelocity = new Vector3(mov * speed * -1, rb2d.linearVelocity.y, 0);
-            }
-        }
-
         animation.SetFloat("Movement", Mathf.Abs(rb2d.linearVelocity.x));
-        if (rb2d.linearVelocity.x > 0 & !isRight)
-        {
-            gameObject.transform.Rotate(0, 180, 0);
-            isRight = true;
-        }
-        else if (rb2d.linearVelocity.x < 0 & isRight)
-        {
-            gameObject.transform.Rotate(0, 180, 0);
-            isRight = false;
-        }
+        animation.SetBool("amIstaying?", rb2d.linearVelocity.x == 0);
         IsSpeedZero();
     }
-
+    void HandleDash()
+    {
+        StartCoroutine(Dash());
+    }
+    IEnumerator Dash()
+    {
+        yield return new WaitForSeconds(dashCooldown);
+        
+    }
 }
